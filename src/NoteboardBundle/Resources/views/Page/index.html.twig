@@ -1,0 +1,45 @@
+{% extends 'NoteboardBundle::layout.html.twig' %}
+
+{% block title %}Index{% endblock %}
+
+{% block h1 %} Note Board {% endblock %}
+
+{% block body %}
+
+    {% block table %}
+        <table id = "note_table" border = 1>
+            <thead>
+                <tr>
+                    <th>Note No.
+                    <th>User
+                    <th>Note
+                    <th>Comment
+                    <th>Delete
+                    <th>Edit
+                </tr>
+            </thead>
+        {% for data in datas %}
+            <tr>
+                <td>{{ data.getId() }}</td>
+                <td>{{ data.getUsername() }}</td>
+                <td>{{ data.getNote() }}</td>
+                <td><a href = "{{ path('noteboard_about', {'page' : data.getId }) }}">{{ data.getComments|length }}  Comments</a></td>
+                <td><a href = "{{ path('noteboard_delete', {'page' : data.getId }) }}">Delete</a></td>
+                <td><a href="{{ path('noteboard_edit', {'page' : data.getId }) }}">Edit</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endblock %}
+
+    {{ form_start(form) }}
+    <form action = "{{ path('noteboard_homepage') }}", method = "post">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.userName) }}
+        {{ form_row(form.note) }}
+
+        {{ form_rest(form) }}
+    </form>
+    {{ form_end(form) }}
+
+{% endblock %}

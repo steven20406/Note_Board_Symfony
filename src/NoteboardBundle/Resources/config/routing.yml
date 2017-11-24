@@ -1,0 +1,24 @@
+noteboard_homepage:
+    path:     /
+    defaults: { _controller: NoteboardBundle:Page:index }
+    requirements:
+        _method: GET
+
+noteboard_about:
+    path:  /about/{page}
+    defaults: { _controller: NoteboardBundle:Page:about, page: 1 }
+    requirements:
+        page: '\d+'
+        _method:  GET
+
+noteboard_delete:
+    path:  /delete/{page}
+    defaults: { _controller: NoteboardBundle:Delete:delete, page: 1 }
+    requirements:
+        page: '\d+'
+
+noteboard_edit:
+    path: /edit/{page}
+    defaults: { _controller: NoteboardBundle:Page:edit, page: 1 }
+    requirements:
+        page: '\d+'

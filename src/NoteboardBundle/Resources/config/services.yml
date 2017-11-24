@@ -1,0 +1,4 @@
+services:
+#    noteboard.example:
+#        class: NoteboardBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

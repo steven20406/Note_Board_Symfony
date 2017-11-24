@@ -1,0 +1,36 @@
+{% extends '@Noteboard/layout.html.twig' %}
+
+{% block title %} Edit note {% endblock %}
+
+{% block body %}
+
+    {% block table %}
+
+        <table id = "note_table" border = 1>
+            <thead>
+            <tr>
+                <th>Note No.
+                <th>User
+                <th>Note
+            </tr>
+            </thead>
+            <tr>
+                <td>{{ noteData.getId() }}</td>
+                <td>{{ noteData.getUsername() }}</td>
+                <td>{{ noteData.getNote() }}</td>
+            </tr>
+        </table>
+
+    {% endblock %}
+
+    {{ form_start(form) }}
+
+    {{ form_errors(form) }}
+    {{ form_row(form.userName, {'value' : noteData.getUsername, 'attr' : {'readonly' : 'true'}}) }}
+    <br>
+    {{ form_row(form.note, {'value' : noteData.getNote }) }}
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}
