@@ -22,3 +22,7 @@ noteboard_edit:
     defaults: { _controller: NoteboardBundle:Page:edit, page: 1 }
     requirements:
         page: '\d+'
+
+noteboard_admin:
+    path: /admin
+    defaults: { _controller: NoteboardBundle:Page:admin}

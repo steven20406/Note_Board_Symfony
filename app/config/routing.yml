@@ -1,6 +1,10 @@
+banking:
+    resource: "@BankingBundle/Resources/config/routing.yml"
+    prefix:   /banking
+
 noteboard:
     resource: "@NoteboardBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /note
 
 app:
     resource: '@AppBundle/Controller/'

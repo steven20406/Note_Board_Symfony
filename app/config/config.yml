@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@NoteboardBundle/Resources/config/services.yml" }
+    - { resource: "@BankingBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -43,13 +44,24 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver: pdo_mysql
-        host: 'localhost'
-        port: '%database_port%'
-        dbname: 'note_board'
-        user: 'root'
-        password: '04060406'
-        charset: UTF8
+        default_connection: default
+        connections:
+            default:
+                driver: pdo_mysql
+                host: 'localhost'
+                port: '%database_port%'
+                dbname: 'note_board'
+                user: 'root'
+                password: '04060406'
+                charset: UTF8
+            banking:
+                driver: pdo_mysql
+                host: 'localhost'
+                port: '%database_port%'
+                dbname: 'banking'
+                user: 'root'
+                password: '04060406'
+#                charset: UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
@@ -58,9 +70,19 @@ doctrine:
         #path: '%database_path%'
 
     orm:
-        auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+#        auto_generate_proxy_classes: '%kernel.debug%'
+#        naming_strategy: doctrine.orm.naming_strategy.underscore
+#        auto_mapping: true
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    NoteboardBundle: ~
+            banking:
+                connection: banking
+                mappings:
+                    BankingBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -69,3 +91,10 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+    organize_migrations: false # Version >=1.2 Possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false

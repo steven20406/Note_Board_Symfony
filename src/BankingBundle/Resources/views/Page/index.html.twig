@@ -1,0 +1,38 @@
+{% extends '@Banking/layout.html.twig' %}
+
+{% block title %}Index{% endblock %}
+
+{% block h1 %}User list{% endblock %}
+
+{% block body %}
+
+    <h3 xmlns="http://www.w3.org/1999/html">Add user</h3>
+
+    {{ form_start(form, {'action' : path('banking_homepage'), 'method' : 'post'}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+
+    {% block table %}
+        <table id="user_table" border="1">
+            <thead>
+            <tr>
+                <th>User id</th>
+                <th>Username</th>
+                <th>Balance</th>
+                <th>Manage account</th>
+            </tr>
+            </thead>
+
+            {% for data in user %}
+                <tr>
+                    <td>{{ data.id }}</td>
+                    <td><a href = "{{ path('banking_save', { 'page': data.id }) }}">{{ data.username }}</a></td>
+                    <td>{{ data.balance }}</td>
+                    <td><a href = "{{ path('banking_save', { 'page': data.id }) }}">Save/Withdraw money</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
+
+{% endblock %}

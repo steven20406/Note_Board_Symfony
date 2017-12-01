@@ -42,3 +42,7 @@ services:
         resource: '../../src/NoteboardBundle/Controller/*'
         public: true
         tags: ['controller.service_arguments']
+
+#    NoteboardBundle\EventListener\ExceptionListener:
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.exception }

@@ -9,10 +9,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class BoarddataType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('userName', TextType::class)
-            ->add('note', TextType::class)
-            ->add('Submit', SubmitType::class);
+    /**
+     * Add note form
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder->add('username', TextType::class, ['label' => 'User name : '])
+                ->add('note', TextType::class, ['label' => 'Note : '])
+                ->add('Submit', SubmitType::class);
     }
 }

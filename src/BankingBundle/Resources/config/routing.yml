@@ -1,0 +1,9 @@
+banking_homepage:
+    path:     /
+    defaults: { _controller: BankingBundle:Banking:index }
+
+banking_save:
+    path:    /save/{page}
+    defaults: { _controller: BankingBundle:Banking:save, page: 1 }
+    requirements:
+        page: '\d+'

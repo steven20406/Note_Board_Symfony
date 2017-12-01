@@ -1,0 +1,52 @@
+{% extends '@Banking/layout.html.twig' %}
+
+{% block title %}Save{% endblock %}
+
+{% block h1 %}Manage account{% endblock %}
+
+{% block body %}
+
+<table id="user_table" border="1">
+    <thead>
+    <tr>
+        <th>User id</th>
+        <th>Username</th>
+        <th>Balance</th>
+    </tr>
+    </thead>
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username}}</td>
+            <td>{{ user.balance }}</td>
+        </tr>
+</table>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+        <input type = "submit" name = "save" value = "Save">
+        <input type = "submit" name = "withdraw" value = "Withdraw">
+    {{ form_end(form) }}
+
+    <table id = "tran_table" border = "1">
+        <thead>
+        <tr>
+            <td>Username</td>
+            <td>Transaction amount</td>
+            <td>Balance</td>
+            <td>Date</td>
+            <td>detail</td>
+        </tr>
+        </thead>
+
+        {% for data in datas %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ data.amount }}</td>
+                <td>{{ data.balance }}</td>
+                <td>{{ data.at.date }}</td>
+                <td>{{ dump(data) }}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

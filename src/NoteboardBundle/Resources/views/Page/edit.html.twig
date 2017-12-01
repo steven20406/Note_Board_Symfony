@@ -1,6 +1,8 @@
 {% extends '@Noteboard/layout.html.twig' %}
 
-{% block title %} Edit note {% endblock %}
+{% block title %}Edit note{% endblock %}
+
+{% block h1 %}Edit note{% endblock %}
 
 {% block body %}
 
@@ -24,13 +26,11 @@
     {% endblock %}
 
     {{ form_start(form) }}
-
-    {{ form_errors(form) }}
-    {{ form_row(form.userName, {'value' : noteData.getUsername, 'attr' : {'readonly' : 'true'}}) }}
-    <br>
-    {{ form_row(form.note, {'value' : noteData.getNote }) }}
-    {{ form_rest(form) }}
-
+        {{ form_errors(form) }}
+        {{ form_row(form.username, {'value' : noteData.getUsername, 'attr' : {'readonly' : 'true'}}) }}
+        <br>
+        {{ form_row(form.note, {'value' : noteData.getNote }) }}
+        {{ form_rest(form) }}
     {{ form_end(form) }}
 
 {% endblock %}

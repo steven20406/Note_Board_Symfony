@@ -3,9 +3,9 @@
 security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
-    providers:
-        in_memory:
-            memory: ~
+#    providers:
+#        in_memory:
+#            memory: ~
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -15,6 +15,8 @@ security:
 
         main:
             anonymous: ~
+            http_basic: ~
+            provider: db_provider
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -22,3 +24,19 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+    access_control:
+        - { path: ^/admin, role: ROLE_USER}
+
+    providers:
+        db_provider:
+            entity:
+                class: NoteboardBundle:User
+                property: username
+
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
+
+        NoteboardBundle\Entity\User:
+            algorithm: bcrypt
