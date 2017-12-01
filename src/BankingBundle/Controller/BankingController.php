@@ -11,6 +11,7 @@ class BankingController extends Controller
 {
     /**
      * Index page
+     * Test
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
