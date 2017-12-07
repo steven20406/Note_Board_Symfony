@@ -8,7 +8,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: tw
 
 framework:
     #esi: ~
@@ -23,7 +23,7 @@ framework:
     #serializer: { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale: '%locale%'
+    default_locale: 'en'
     trusted_hosts: ~
     session:
         # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
@@ -34,6 +34,10 @@ framework:
     assets: ~
     php_errors:
         log: true
+    translator:
+        fallback: [tw]
+        paths:
+            - '%kernel.project_dir%/app/Resources/translations'
 
 # Twig Configuration
 twig:
@@ -61,7 +65,7 @@ doctrine:
                 dbname: 'banking'
                 user: 'root'
                 password: '04060406'
-#                charset: UTF8
+                charset: UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'

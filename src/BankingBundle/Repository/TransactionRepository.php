@@ -14,14 +14,17 @@ class TransactionRepository extends EntityRepository
      */
     public function getTransaction($id)
     {
-        $em = $this->getEntityManager('banking')
-                ->createQueryBuilder()
-                ->select('t')
-                ->from('BankingBundle:Transaction', 't')
-                ->where('t.userId = :id')
-                ->setParameter('id', $id)
-                ->getQuery()->execute();
+        try {
+            $query = $this->getEntityManager('banking')
+                    ->createQueryBuilder()
+                    ->select('t')
+                    ->from('BankingBundle:Transaction', 't')
+                    ->where('t.userId = :id')
+                    ->setParameter('id', $id)
+                    ->getQuery()->execute();
+        } catch (\Exception $e) {
+        }
 
-        return $em;
+        return $query;
     }
 }
