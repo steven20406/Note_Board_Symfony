@@ -2,7 +2,6 @@
 
 namespace Application\Migrations;
 
-use BankingBundle\Entity\User;
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -14,8 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20171201032133 extends AbstractMigration implements ContainerAwareInterface
-{
+class Version20171201032133 extends AbstractMigration implements ContainerAwareInterface {
 
     private $container;
 
@@ -31,32 +29,45 @@ class Version20171201032133 extends AbstractMigration implements ContainerAwareI
     /**
      * @param Schema $schema
      */
-    public function up(Schema $schema)
-    {
+    public function up(Schema $schema) {
     }
 
     /**
      * @param Schema $schema
      */
-    public function down(Schema $schema)
-    {
+    public function down(Schema $schema) {
     }
 
     /**
      * Add 20 data into user table
      *
      * @param Schema $schema
+     * @throws \Doctrine\DBAL\Migrations\AbortMigrationException
      */
     public function postUp(Schema $schema) {
-        $em = $this->container->get('doctrine')->getManager('banking');
 
-        for($i = 1; $i <= 20; $i++){
-            $user = new User();
-            $user->setUsername('Steven No.'.$i);
-            $user->setBalance(rand(10000, 1000000));
-            $em->persist($user);
-        }
-        $em->flush();
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.1", 992840)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.2", 432932)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.3", 679851)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.4", 259380)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.5", 88677)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.6", 424059)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.7", 911033)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.8", 737507)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.9", 38783)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.10", 217975)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.11", 408003)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.12", 558868)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.13", 719553)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.14", 641569)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.15", 237652)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.16", 546073)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.17", 686016)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.18", 936890)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.19", 541026)');
+        $this->connection->exec('insert into user (username, balance) value ("Steven No.20", 916510)');
     }
 
     /**

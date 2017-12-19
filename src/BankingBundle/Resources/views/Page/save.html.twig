@@ -34,7 +34,6 @@
             <td>Transaction amount</td>
             <td>Balance</td>
             <td>Date</td>
-            <td>detail</td>
         </tr>
         </thead>
 
@@ -44,8 +43,6 @@
                 <td>{{ data.amount }}</td>
                 <td>{{ data.balance }}</td>
                 <td>{{ data.at.date }}</td>
-                <td>{{ dump(data) }}</td>
-
             </tr>
         {% endfor %}
     </table>

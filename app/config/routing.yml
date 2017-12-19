@@ -1,6 +1,8 @@
 banking:
-    resource: "@BankingBundle/Resources/config/routing.yml"
+#    resource: "@BankingBundle/Resources/config/routing.yml"
+    resource: "@BankingBundle/Controller/"
     prefix:   /banking
+    type: annotation
 
 noteboard:
     resource: "@NoteboardBundle/Resources/config/routing.yml"

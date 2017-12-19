@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="BankingBundle\Repository\UserRepository")
  * @ORM\Table(name = "user")
  */
-class User
+class User implements \JsonSerializable
 {
     /**
      * @ORM\Id()
@@ -70,7 +70,7 @@ class User
     }
 
     /**
-     * @param bigint  $balance
+     * @param bigint $balance
      */
     public function setBalance($balance) {
         $this->balance = $balance;
@@ -81,5 +81,13 @@ class User
      */
     public function getTransactions() {
         return $this->transactions;
+    }
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->getId(),
+            'username' => $this->getUsername(),
+            'balance' => $this->getBalance()
+        ];
     }
 }
