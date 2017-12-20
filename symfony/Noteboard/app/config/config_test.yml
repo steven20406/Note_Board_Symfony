@@ -1,0 +1,37 @@
+imports:
+    - { resource: config_dev.yml }
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true
+
+doctrine:
+    dbal:
+        default_connection: banking
+        connections:
+            banking:
+                driver: pdo_sqlite
+                user: '%database_banking_user%'
+                path: '%kernel.cache_dir%/test_banking.db'
+                memory: true
+                charset: UTF8
+    orm:
+        default_entity_manager: banking
+        entity_managers:
+            banking:
+                connection: banking
+                mappings:
+                    BankingBundle: ~
+
+liip_functional_test:
+    cache_sqlite_db: true
